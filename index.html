@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alyax — Developer</title>
+<meta name="description" content="Desarrollador web: páginas para streamers, páginas para negocios con pedidos por WhatsApp, dashboards a medida, extensiones de Chrome y automatizaciones.">
+<meta name="theme-color" content="#080a0f">
+<meta property="og:title" content="Alyax — Developer">
+<meta property="og:description" content="Páginas para streamers y negocios, dashboards, extensiones de Chrome y automatizaciones.">
+<meta property="og:image" content="img/pickrate.webp">
 <link rel="icon" type="image/jpeg" href="favicon.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -14,59 +20,63 @@
   --bg: #080a0f;
   --bg2: #0d1018;
   --surface: #111318;
-  --border: rgba(255,255,255,0.06);
-  --border-h: rgba(255,255,255,0.14);
+  --surface2: #171a21;
+  --border: rgba(255,255,255,0.07);
+  --border-h: rgba(255,255,255,0.16);
   --text: #dde1ec;
-  --muted: #6b7280;
-  --dim: #2e3340;
+  --muted: #8a909c;
+  --dim: #3a404d;
   --cyan: #06b6d4;
   --cyan-dim: rgba(6,182,212,0.12);
-  --cyan-glow: rgba(6,182,212,0.25);
-  --display: 'Bebas Neue', sans-serif;
-  --body: 'DM Sans', sans-serif;
-  --mono: 'DM Mono', monospace;
+  --display: 'Bebas Neue', Impact, sans-serif;
+  --body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --gutter: 3rem;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 
 body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--body);
   font-size: 15px;
+  line-height: 1.5;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 999;
-  opacity: 0.4;
-}
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+svg { flex-shrink: 0; }
 
 /* NAV */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
+  background: rgba(8,10,15,0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 1.25rem 3rem;
-  background: rgba(8,10,15,0.85);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
+  gap: 1.5rem;
+  padding: 0.9rem var(--gutter);
 }
 .nav-logo {
   font-family: var(--display);
   font-size: 22px;
   letter-spacing: 3px;
   color: white;
+  text-decoration: none;
+  margin-right: auto;
 }
-.nav-links { display: flex; gap: 2rem; align-items: center; }
+.nav-links { display: flex; gap: 1.75rem; align-items: center; }
 .nav-links a {
   color: var(--muted);
   text-decoration: none;
@@ -77,42 +87,60 @@ nav {
 }
 .nav-links a:hover { color: white; }
 .nav-cta {
-  padding: 8px 20px;
+  padding: 8px 18px;
   background: var(--cyan);
-  color: white !important;
+  color: #04151a;
   border-radius: 8px;
-  font-weight: 500 !important;
-  text-transform: none !important;
-  letter-spacing: 0 !important;
-  font-size: 14px !important;
-  transition: opacity 0.2s !important;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s;
 }
 .nav-cta:hover { opacity: 0.85; }
 
+/* LANG SWITCH */
+.lang-switch {
+  display: flex;
+  flex-shrink: 0;
+  padding: 3px;
+  gap: 2px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border-h);
+}
+.lang-opt {
+  padding: 4px 9px;
+  border: none;
+  border-radius: 999px;
+  background: none;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  transition: color 0.15s, background 0.15s;
+}
+.lang-opt:hover { color: var(--text); }
+.lang-opt[aria-pressed="true"] { background: var(--surface2); color: var(--text); box-shadow: inset 0 0 0 1px var(--border-h); }
+
 /* HERO */
 #hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 8rem 3rem 4rem;
+  padding: 10rem var(--gutter) 5rem;
   position: relative;
   overflow: hidden;
 }
-.hero-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-}
-.hero-glow {
-  position: fixed;
+#hero::before {
+  content: '';
+  position: absolute;
   width: 700px; height: 700px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(6,182,212,0.07) 0%, transparent 70%);
-  top: -200px; right: -200px;
+  background: radial-gradient(circle, rgba(6,182,212,0.09) 0%, transparent 70%);
+  top: -250px; right: -200px;
   pointer-events: none;
-  z-index: 0;
 }
+.hero-inner { max-width: 1200px; margin: 0 auto; position: relative; }
 .hero-tag {
   display: inline-flex;
   align-items: center;
@@ -123,100 +151,65 @@ nav {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
-  opacity: 0;
-  animation: fadeUp 0.6s ease 0.2s forwards;
 }
 .hero-tag::before {
   content: '';
-  width: 24px; height: 1px;
-  background: var(--cyan);
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 4px rgba(34,197,94,0.15);
 }
 h1 {
   font-family: var(--display);
-  font-size: clamp(72px, 10vw, 130px);
+  font-weight: 400;
+  font-size: clamp(64px, 10vw, 128px);
   line-height: 0.92;
   letter-spacing: 2px;
   color: white;
-  opacity: 0;
-  animation: fadeUp 0.7s ease 0.3s forwards;
 }
 h1 .cyan { color: var(--cyan); }
-h1 .outline {
-  -webkit-text-stroke: 1px rgba(255,255,255,0.25);
-  color: transparent;
-}
+h1 .outline { -webkit-text-stroke: 1px rgba(255,255,255,0.3); color: transparent; }
 .hero-sub {
-  margin-top: 2rem;
-  max-width: 460px;
+  margin-top: 1.75rem;
+  max-width: 520px;
   color: var(--muted);
   line-height: 1.7;
+  font-size: 16px;
+}
+.hero-btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 2.25rem; }
+.btn-primary, .btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: 10px;
+  font-family: var(--body);
   font-size: 15px;
-  opacity: 0;
-  animation: fadeUp 0.7s ease 0.4s forwards;
-}
-.hero-btns {
-  display: flex;
-  gap: 12px;
-  margin-top: 2.5rem;
-  opacity: 0;
-  animation: fadeUp 0.7s ease 0.5s forwards;
-}
-.btn-primary {
-  padding: 12px 28px;
-  background: var(--cyan);
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-family: var(--body);
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
+  font-weight: 600;
   text-decoration: none;
-  transition: opacity 0.2s, transform 0.2s;
-  display: inline-block;
+  transition: opacity 0.2s, transform 0.2s, border-color 0.2s, color 0.2s;
 }
-.btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
-.btn-outline {
-  padding: 12px 28px;
-  background: transparent;
-  color: var(--text);
-  border: 1px solid var(--border-h);
-  border-radius: 10px;
-  font-family: var(--body);
-  font-size: 14px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: border-color 0.2s, color 0.2s, transform 0.2s;
-  display: inline-block;
-}
+.btn-primary { background: var(--cyan); color: #04151a; }
+.btn-primary:hover { opacity: 0.88; transform: translateY(-2px); }
+.btn-outline { border: 1px solid var(--border-h); color: var(--text); font-weight: 500; }
 .btn-outline:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
 .hero-stats {
   display: flex;
-  gap: 3rem;
-  margin-top: 4rem;
+  flex-wrap: wrap;
+  gap: 1.5rem 3rem;
+  margin-top: 3.5rem;
   padding-top: 2rem;
   border-top: 1px solid var(--border);
-  opacity: 0;
-  animation: fadeUp 0.7s ease 0.6s forwards;
 }
-.stat-val {
-  font-family: var(--display);
-  font-size: 36px;
-  color: white;
-  letter-spacing: 1px;
-}
+.stat-val { font-family: var(--display); font-size: 36px; color: white; letter-spacing: 1px; line-height: 1; }
 .stat-val span { color: var(--cyan); }
-.stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
 
 /* SECTIONS */
-.section-wrap {
-  padding: 6rem 3rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.section-wrap.alt { background: var(--bg2); max-width: 100%; padding: 0; }
-.section-wrap.alt .section-inner { max-width: 1200px; margin: 0 auto; padding: 6rem 3rem; }
-
+.band { background: var(--bg); }
+.band.alt { background: var(--bg2); }
+.section-wrap { padding: 6rem var(--gutter); max-width: 1200px; margin: 0 auto; }
 .section-label {
   display: flex;
   align-items: center;
@@ -226,531 +219,608 @@ h1 .outline {
   color: var(--cyan);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
-.section-label::after {
-  content: '';
-  flex: 1;
-  max-width: 60px;
-  height: 1px;
-  background: var(--cyan);
-  opacity: 0.5;
-}
+.section-label::after { content: ''; width: 48px; height: 1px; background: var(--cyan); opacity: 0.5; }
 .section-title {
   font-family: var(--display);
-  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 400;
+  font-size: clamp(42px, 6vw, 68px);
   letter-spacing: 1px;
   color: white;
   line-height: 1;
-  margin-bottom: 3rem;
 }
-
-/* STACK */
-.stack-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 12px;
-}
-.stack-item {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.5rem 1rem;
-  text-align: center;
-  transition: border-color 0.25s, transform 0.25s, background 0.25s;
-  cursor: default;
-}
-.stack-item:hover { border-color: var(--cyan); background: var(--cyan-dim); transform: translateY(-4px); }
-.stack-item img { width: 40px; height: 40px; margin: 0 auto 10px; display: block; }
-.stack-item .name { font-size: 12px; color: var(--muted); font-family: var(--mono); }
-.stack-item:hover .name { color: var(--cyan); }
+.section-intro { color: var(--muted); max-width: 560px; margin-top: 0.9rem; line-height: 1.65; }
+.section-head { margin-bottom: 2.75rem; }
 
 /* PROJECTS */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+.projects-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; }
+.project-card { grid-column: span 2; }
+.project-card.wide { grid-column: span 3; }
+@media (max-width: 960px) {
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .project-card, .project-card.wide { grid-column: span 1; }
+  .project-card:first-child { grid-column: 1 / -1; }
 }
-@media (max-width: 900px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 768px) { .projects-grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) {
+  .projects-grid { grid-template-columns: 1fr; }
+}
 
 .project-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   transition: border-color 0.3s, transform 0.3s;
-  position: relative;
 }
-.project-card:hover { border-color: var(--cyan); transform: translateY(-6px); }
+.project-card:hover { border-color: rgba(6,182,212,0.6); transform: translateY(-4px); }
 .proj-img {
-  width: 100%;
-  height: 220px;
+  display: block;
+  aspect-ratio: 16 / 10;
+  background: var(--bg2);
   overflow: hidden;
-  background: var(--surface);
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-bottom: 1px solid var(--border);
 }
-.proj-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
-.proj-placeholder {
-  width: 100%;
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--display);
-  font-size: 48px;
-  letter-spacing: 2px;
-  color: var(--dim);
-  background: linear-gradient(135deg, var(--bg2) 0%, var(--surface) 100%);
-}
-.proj-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(6,182,212,0.06);
-  opacity: 0;
-  transition: opacity 0.3s;
-  pointer-events: none;
-}
-.project-card:hover .proj-overlay { opacity: 1; }
-.proj-body { padding: 1.5rem; }
-.proj-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 0.75rem; }
-.proj-tag {
+.proj-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.5s; }
+.project-card:hover .proj-img img { transform: scale(1.03); }
+.proj-body { padding: 1.4rem 1.5rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
+.proj-kicker { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.35rem; }
+.proj-name { font-size: 19px; font-weight: 600; color: white; margin-bottom: 0.5rem; }
+.proj-desc { color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom: 1rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
+.tag {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 11px;
   color: var(--cyan);
   background: var(--cyan-dim);
-  padding: 3px 8px;
+  padding: 3px 9px;
   border-radius: 99px;
 }
-.proj-name { font-size: 17px; font-weight: 600; color: white; margin-bottom: 0.5rem; }
-.proj-desc { color: var(--muted); font-size: 13px; line-height: 1.6; margin-bottom: 1.25rem; }
 .proj-link {
-  color: var(--cyan);
-  font-size: 13px;
-  text-decoration: none;
-  font-weight: 500;
+  margin-top: auto;
+  align-self: flex-start;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  color: var(--cyan);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 6px 0;
   transition: gap 0.2s;
 }
 .proj-link:hover { gap: 10px; }
 
-/* SERVICES */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+/* TOOLS */
+.tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+@media (max-width: 860px) { .tools-grid { grid-template-columns: 1fr; } }
+.tool-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.25rem;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
 }
-@media (max-width: 768px) { .services-grid { grid-template-columns: 1fr; } }
+.tool-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--cyan-dim);
+  color: var(--cyan);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.tool-kind { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+.tool-name { font-size: 16px; font-weight: 600; color: white; margin: 2px 0 6px; }
+.tool-desc { color: var(--muted); font-size: 13px; line-height: 1.55; }
+.tools-note { margin-top: 1.25rem; font-size: 13px; color: var(--muted); }
 
+/* SERVICES */
+.services-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+.service-card { grid-column: span 2; }
+.service-card:nth-child(4), .service-card:nth-child(5) { grid-column: span 3; }
+@media (max-width: 860px) {
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .service-card, .service-card:nth-child(4) { grid-column: span 1; }
+  .service-card:nth-child(5) { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card:nth-child(n) { grid-column: auto; }
+}
 .service-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 2rem;
-  transition: border-color 0.25s, transform 0.25s;
+  padding: 1.75rem;
+  transition: border-color 0.25s;
 }
-.service-card:hover { border-color: var(--cyan); transform: translateY(-4px); }
+.service-card:hover { border-color: rgba(6,182,212,0.6); }
 .service-icon {
-  width: 48px; height: 48px;
+  width: 44px; height: 44px;
   background: var(--cyan-dim);
+  color: var(--cyan);
   border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  margin-bottom: 1.25rem;
+  display: grid;
+  place-items: center;
+  margin-bottom: 1.1rem;
 }
-.service-name { font-size: 16px; font-weight: 600; color: white; margin-bottom: 0.5rem; }
-.service-desc { color: var(--muted); font-size: 13px; line-height: 1.6; }
+.service-name { font-size: 17px; font-weight: 600; color: white; margin-bottom: 0.45rem; }
+.service-desc { color: var(--muted); font-size: 14px; line-height: 1.6; }
+.services-cta { margin-top: 2rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; color: var(--muted); font-size: 14px; }
 
 /* CONTACT */
 .contact-box {
-  max-width: 560px;
-  margin: 0 auto;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 3rem;
-  text-align: left;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
 }
-.contact-box p { color: var(--muted); line-height: 1.7; margin-bottom: 2rem; }
+@media (max-width: 860px) { .contact-box { grid-template-columns: 1fr; padding: 2rem 1.5rem; gap: 1.75rem; } }
+.contact-box .section-intro { margin-top: 1rem; }
 .contact-methods { display: flex; flex-direction: column; gap: 12px; }
 .contact-btn {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px 20px;
+  gap: 14px;
+  padding: 15px 18px;
   background: var(--bg2);
   border: 1px solid var(--border);
   border-radius: 12px;
   color: var(--text);
   text-decoration: none;
-  font-size: 14px;
   transition: border-color 0.2s, background 0.2s;
 }
 .contact-btn:hover { border-color: var(--cyan); background: var(--cyan-dim); color: white; }
-.contact-btn-label { flex: 1; }
+.contact-btn[hidden] { display: none; }
+.contact-btn-text { flex: 1; min-width: 0; }
+.contact-btn-label { display: block; font-size: 15px; font-weight: 600; }
+.contact-btn-sub { display: block; font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .contact-btn-arrow { color: var(--muted); }
 .contact-btn:hover .contact-btn-arrow { color: var(--cyan); }
+.ic-discord { color: #5865f2; }
+.ic-whatsapp { color: #25d366; }
+.ic-mail { color: var(--cyan); }
 
 /* FOOTER */
 footer {
-  padding: 2rem 3rem;
+  padding: 2rem var(--gutter);
   border-top: 1px solid var(--border);
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
 }
 .footer-logo { font-family: var(--display); font-size: 18px; letter-spacing: 3px; color: var(--dim); }
-.footer-copy { font-size: 12px; color: var(--dim); font-family: var(--mono); }
+.footer-copy { font-size: 12px; color: var(--muted); font-family: var(--mono); }
+.footer-copy a { color: var(--muted); }
 
 /* REVEAL */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.js .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.js .reveal.visible { opacity: 1; transform: none; }
 
-/* CURSOR */
-.cursor-dot {
-  width: 6px; height: 6px;
-  background: var(--cyan);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
+@media (max-width: 860px) {
+  :root { --gutter: 1.5rem; }
+  .nav-links a:not(.nav-cta) { display: none; }
 }
-.cursor-ring {
-  width: 32px; height: 32px;
-  border: 1px solid rgba(6,182,212,0.4);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9998;
-  transition: width 0.2s, height 0.2s, border-color 0.2s;
-}
-
-@keyframes fadeUp {
-  to { opacity: 1; transform: translateY(0); }
+@media (max-width: 600px) {
+  :root { --gutter: 16px; }
+  .nav-inner { gap: 8px; padding-top: 10px; padding-bottom: 10px; }
+  .nav-links { gap: 8px; }
+  .nav-cta { padding: 8px 14px; }
+  .lang-switch { padding: 0; border: none; background: none; }
+  .lang-opt[aria-pressed="true"] { display: none; }
+  .lang-opt { width: 36px; height: 36px; padding: 0; border: 1px solid var(--border-h); background: var(--surface); }
+  #hero { padding-top: 7.5rem; padding-bottom: 3.5rem; }
+  .hero-btns a { flex: 1 1 100%; }
+  .section-wrap { padding-top: 4rem; padding-bottom: 4rem; }
+  footer { flex-direction: column; text-align: center; }
 }
 
-@media (max-width: 768px) {
-  nav { padding: 1rem 1.5rem; }
-  .nav-links { display: none; }
-  #hero, .section-wrap { padding-left: 1.5rem; padding-right: 1.5rem; }
-  .hero-stats { gap: 2rem; }
-  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+  .js .reveal { opacity: 1; transform: none; }
 }
 </style>
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
-<div class="cursor-dot" id="dot"></div>
-<div class="cursor-ring" id="ring"></div>
-
 <nav>
-  <div class="nav-logo">ALYAX</div>
-  <div class="nav-links">
-    <a href="#stack">Stack</a>
-    <a href="#projects">Projects</a>
-    <a href="#services">Services</a>
-    <a href="#contact" class="nav-cta">Hire Me</a>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">ALYAX</a>
+    <div class="nav-links">
+      <a href="#projects" data-i18n="nav.projects">Proyectos</a>
+      <a href="#tools" data-i18n="nav.tools">Herramientas</a>
+      <a href="#services" data-i18n="nav.services">Servicios</a>
+    </div>
+    <div class="lang-switch" role="group" aria-label="Idioma" data-i18n-attr="aria-label:nav.lang">
+      <button type="button" class="lang-opt" data-lang="es" aria-pressed="true" aria-label="Español" lang="es">ES</button>
+      <button type="button" class="lang-opt" data-lang="en" aria-pressed="false" aria-label="English" lang="en">EN</button>
+    </div>
+    <a href="#contact" class="nav-cta" data-i18n="nav.cta">Contactar</a>
   </div>
 </nav>
 
+<main>
+
 <!-- HERO -->
-<div style="background:var(--bg)">
-  <section id="hero">
-  <div class="hero-glow"></div>
+<section id="hero">
   <div class="hero-inner">
-    <div class="hero-tag">Available for work</div>
-    <h1>I BUILD<br><span class="cyan">DIGITAL</span><br><span class="outline">TOOLS</span></h1>
-    <p class="hero-sub">Front-end developer & automation builder. I create web apps, Chrome extensions, Discord bots, and custom scripts that actually work.</p>
+    <div class="hero-tag" data-i18n="hero.tag">Disponible para proyectos</div>
+    <h1><span data-i18n="hero.l1">CREO</span><br><span class="cyan" data-i18n="hero.l2">PÁGINAS</span><br><span class="outline" data-i18n="hero.l3">Y HERRAMIENTAS</span></h1>
+    <p class="hero-sub" data-i18n="hero.sub">Desarrollador web y de automatizaciones. Hago páginas para streamers y negocios, dashboards a medida, extensiones de Chrome y scripts que te ahorran tiempo.</p>
     <div class="hero-btns">
-      <a href="#projects" class="btn-primary">View Projects</a>
-      <a href="#contact" class="btn-outline">Contact Me</a>
+      <a href="#contact" class="btn-primary" data-i18n="hero.cta">Hablemos de tu proyecto</a>
+      <a href="#projects" class="btn-outline" data-i18n="hero.secondary">Ver proyectos</a>
     </div>
     <div class="hero-stats">
       <div>
-        <div class="stat-val">5<span>+</span></div>
-        <div class="stat-label">Projects built</div>
+        <div class="stat-val">5</div>
+        <div class="stat-label" data-i18n="hero.stat1">Proyectos en vivo</div>
       </div>
       <div>
         <div class="stat-val">3<span>+</span></div>
-        <div class="stat-label">Live platforms</div>
+        <div class="stat-label" data-i18n="hero.stat2">Herramientas propias</div>
       </div>
       <div>
-        <div class="stat-val">∞</div>
-        <div class="stat-label">Lines of automation</div>
+        <div class="stat-val">ES<span>/</span>EN</div>
+        <div class="stat-label" data-i18n="hero.stat3">Atención en español e inglés</div>
       </div>
     </div>
   </div>
+</section>
+
+<!-- PROJECTS -->
+<div class="band alt" id="projects">
+  <section class="section-wrap">
+    <div class="section-head">
+      <div class="section-label" data-i18n="projects.label">Trabajo</div>
+      <h2 class="section-title" data-i18n="projects.title">PROYECTOS DESTACADOS</h2>
+      <p class="section-intro" data-i18n="projects.intro">Todos están publicados: entra y pruébalos.</p>
+    </div>
+    <div class="projects-grid">
+
+      <article class="project-card wide reveal">
+        <a class="proj-img" href="https://analitics-counter.vercel.app/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <img src="img/pickrate.webp" alt="" width="800" height="500" fetchpriority="high">
+        </a>
+        <div class="proj-body">
+          <div class="proj-kicker" data-i18n="p1.kicker">Esports · CS2, Valorant, Overwatch</div>
+          <h3 class="proj-name">Analytics Counter</h3>
+          <p class="proj-desc" data-i18n="p1.desc">Partidos en vivo, resultados, calendario, equipos y noticias de CS2, Valorant y Overwatch, con predicciones basadas en la forma reciente de cada equipo.</p>
+          <div class="tags"><span class="tag">JavaScript</span><span class="tag">PandaScore API</span><span class="tag" data-i18n="tag.i18n">ES / EN</span><span class="tag">Vercel</span></div>
+          <a href="https://analitics-counter.vercel.app/" target="_blank" rel="noopener" class="proj-link"><span data-i18n="cta.visit">Ver en vivo</span> →</a>
+        </div>
+      </article>
+
+      <article class="project-card wide reveal">
+        <a class="proj-img" href="https://dashboard-alyax-demo.vercel.app/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <img src="img/dashboard.webp" alt="" width="800" height="500" loading="lazy" decoding="async">
+        </a>
+        <div class="proj-body">
+          <div class="proj-kicker" data-i18n="p2.kicker">Dashboard a medida</div>
+          <h3 class="proj-name">Dashboard Alyax</h3>
+          <p class="proj-desc" data-i18n="p2.desc">Tracker de finanzas multiplataforma: depósitos, retiros, balance, cartera cripto con precios en vivo e inventario de skins de CS2. La demo usa datos de ejemplo.</p>
+          <div class="tags"><span class="tag">JavaScript</span><span class="tag" data-i18n="tag.livePrices">Precios en vivo</span><span class="tag">Vercel</span></div>
+          <a href="https://dashboard-alyax-demo.vercel.app/" target="_blank" rel="noopener" class="proj-link"><span data-i18n="cta.demo">Ver demo</span> →</a>
+        </div>
+      </article>
+
+      <article class="project-card reveal">
+        <a class="proj-img" href="https://alyaxgambling.vercel.app/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <img src="img/gambling.webp" alt="" width="800" height="500" loading="lazy" decoding="async">
+        </a>
+        <div class="proj-body">
+          <div class="proj-kicker" data-i18n="p3.kicker">Página para streamer</div>
+          <h3 class="proj-name">Alyax Gambling</h3>
+          <p class="proj-desc" data-i18n="p3.desc">Página de comunidad para un streamer: leaderboard con premios, códigos de afiliado para copiar, sponsors, videos y stream.</p>
+          <div class="tags"><span class="tag">HTML / CSS</span><span class="tag">JavaScript</span><span class="tag">Leaderboard</span></div>
+          <a href="https://alyaxgambling.vercel.app/" target="_blank" rel="noopener" class="proj-link"><span data-i18n="cta.visit">Ver en vivo</span> →</a>
+        </div>
+      </article>
+
+      <article class="project-card reveal">
+        <a class="proj-img" href="https://dulces-magnolias.vercel.app/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <img src="img/magnolias.webp" alt="" width="800" height="500" loading="lazy" decoding="async">
+        </a>
+        <div class="proj-body">
+          <div class="proj-kicker" data-i18n="p4.kicker">Restaurante · Pedidos</div>
+          <h3 class="proj-name">Dulces Magnolias</h3>
+          <p class="proj-desc" data-i18n="p4.desc">Menú online con carrito para un restaurante: el cliente arma su pedido y lo envía por WhatsApp con un toque, listo para preparar.</p>
+          <div class="tags"><span class="tag">HTML / CSS</span><span class="tag">JavaScript</span><span class="tag">WhatsApp</span></div>
+          <a href="https://dulces-magnolias.vercel.app/" target="_blank" rel="noopener" class="proj-link"><span data-i18n="cta.visit">Ver en vivo</span> →</a>
+        </div>
+      </article>
+
+      <article class="project-card reveal">
+        <a class="proj-img" href="https://analytics-theta-seven.vercel.app/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <img src="img/frelytics.webp" alt="" width="800" height="500" loading="lazy" decoding="async">
+        </a>
+        <div class="proj-body">
+          <div class="proj-kicker" data-i18n="p5.kicker">Analytics deportivo</div>
+          <h3 class="proj-name">Frelytics</h3>
+          <p class="proj-desc" data-i18n="p5.desc">Fútbol, NBA y MLB en tiempo real: partidos, resultados, tablas de posiciones y líderes estadísticos de las principales ligas.</p>
+          <div class="tags"><span class="tag">JavaScript</span><span class="tag" data-i18n="tag.sportsApi">API deportiva</span><span class="tag">Vercel</span></div>
+          <a href="https://analytics-theta-seven.vercel.app/" target="_blank" rel="noopener" class="proj-link"><span data-i18n="cta.visit">Ver en vivo</span> →</a>
+        </div>
+      </article>
+
+    </div>
   </section>
 </div>
 
-<!-- STACK -->
-<div style="background:var(--bg2)" id="stack">
-  <div class="section-wrap">
-    <div class="section-label">Tech Stack</div>
-    <div class="section-title">WHAT I USE</div>
-    <div class="stack-grid reveal">
-      <div class="stack-item">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">
-        <div class="name">JavaScript</div>
+<!-- TOOLS -->
+<div class="band" id="tools">
+  <section class="section-wrap">
+    <div class="section-head">
+      <div class="section-label" data-i18n="tools.label">Uso propio</div>
+      <h2 class="section-title" data-i18n="tools.title">HERRAMIENTAS Y AUTOMATIZACIÓN</h2>
+      <p class="section-intro" data-i18n="tools.intro">Extensiones y scripts que construí para resolver problemas reales. Puedo hacer algo así para ti.</p>
+    </div>
+    <div class="tools-grid">
+      <div class="tool-card reveal">
+        <div class="tool-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg></div>
+        <div>
+          <div class="tool-kind" data-i18n="tools.ext">Extensión de Chrome</div>
+          <h3 class="tool-name">Kick Timers</h3>
+          <p class="tool-desc" data-i18n="tools.t1">Temporizadores dentro de Kick para seguir eventos y avisos del stream sin salir de la pestaña.</p>
+        </div>
       </div>
-      <div class="stack-item">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg">
-        <div class="name">HTML5</div>
+      <div class="tool-card reveal">
+        <div class="tool-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
+        <div>
+          <div class="tool-kind" data-i18n="tools.panel">Panel + script</div>
+          <h3 class="tool-name">Kick Scout</h3>
+          <p class="tool-desc" data-i18n="tools.t2">Encuentra streamers de Kick y los códigos que comparten en el chat, filtra a los que no tienen web propia y exporta la lista a CSV.</p>
+        </div>
       </div>
-      <div class="stack-item">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg">
-        <div class="name">CSS3</div>
-      </div>
-      <div class="stack-item">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg">
-        <div class="name">Node.js</div>
-      </div>
-      <div class="stack-item">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">
-        <div class="name">Python</div>
-      </div>
-      <div class="stack-item">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg">
-        <div class="name">Extensions</div>
-      </div>
-      <div class="stack-item">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" style="filter:invert(1)">
-        <div class="name">GitHub</div>
-      </div>
-      <div class="stack-item">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" style="filter:invert(1)">
-        <div class="name">Vercel</div>
+      <div class="tool-card reveal">
+        <div class="tool-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div>
+        <div>
+          <div class="tool-kind" data-i18n="tools.script">Script</div>
+          <h3 class="tool-name" data-i18n="tools.n3">Comparador de precios de skins</h3>
+          <p class="tool-desc" data-i18n="tools.t3">Compara el precio de una skin de CS2 en varios marketplaces para encontrar dónde conviene comprar o vender.</p>
+        </div>
       </div>
     </div>
-  </div>
+    <p class="tools-note" data-i18n="tools.note">Código privado. Si te interesa algo parecido, escríbeme.</p>
+  </section>
 </div>
 
-<!-- PROJECTS -->
-<div style="background:var(--bg)" id="projects">
-  <div class="section-wrap">
-    <div class="section-label">Work</div>
-    <div class="section-title">PROJECTS</div>
-    <div class="projects-grid reveal">
-
-      <!-- CS2 Dashboard -->
-      <div class="project-card">
-        <div class="proj-img">
-          <img src="project3.png" alt="CS2 Dashboard" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=proj-placeholder>CS2</div>'">
-        </div>
-        <div class="proj-overlay"></div>
-        <div class="proj-body">
-          <div class="proj-tags">
-            <span class="proj-tag">JavaScript</span>
-            <span class="proj-tag">API</span>
-            <span class="proj-tag">Vercel</span>
-          </div>
-          <div class="proj-name">CS2 Analytics Dashboard</div>
-          <p class="proj-desc">Live match odds, pro player stats, HLTV-style rankings, map analysis, head-to-head records and more. Powered by PandaScore API.</p>
-          <a href="https://analitics-counter.vercel.app/" target="_blank" class="proj-link">Visit Project →</a>
-        </div>
-      </div>
-
-      <!-- Alyax Gambling -->
-      <div class="project-card">
-        <div class="proj-img">
-          <img src="project1.png" alt="Alyax Gambling" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=proj-placeholder>GAMBL</div>'">
-        </div>
-        <div class="proj-overlay"></div>
-        <div class="proj-body">
-          <div class="proj-tags">
-            <span class="proj-tag">JavaScript</span>
-            <span class="proj-tag">HTML/CSS</span>
-            <span class="proj-tag">Vercel</span>
-          </div>
-          <div class="proj-name">Alyax Gambling</div>
-          <p class="proj-desc">Online gambling leaderboard and reward platform with live tracking and community features.</p>
-          <a href="https://alyaxgambling.vercel.app" target="_blank" class="proj-link">Visit Project →</a>
-        </div>
-      </div>
-
-      <!-- Auto Code Claimer -->
-      <div class="project-card">
-        <div class="proj-img" style="background:linear-gradient(135deg,#0a0f0a,#0d1a0d)">
-          <svg width="100%" height="100%" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-            <rect x="100" y="50" width="200" height="35" rx="17" fill="#22c55e" opacity="0.12"/>
-            <rect x="240" y="60" width="44" height="22" rx="11" fill="#22c55e" opacity="0.7"/>
-            <circle cx="275" cy="71" r="9" fill="white" opacity="0.9"/>
-            <text x="140" y="73" font-family="monospace" font-size="12" fill="#22c55e" opacity="0.6">Codes On/Off</text>
-            <rect x="100" y="98" width="200" height="35" rx="17" fill="#22c55e" opacity="0.12"/>
-            <rect x="240" y="108" width="44" height="22" rx="11" fill="#22c55e" opacity="0.7"/>
-            <circle cx="275" cy="119" r="9" fill="white" opacity="0.9"/>
-            <text x="140" y="121" font-family="monospace" font-size="12" fill="#22c55e" opacity="0.6">AutoJoin On/Off</text>
-            <text x="200" y="165" font-family="monospace" font-size="9" fill="#22c55e" opacity="0.35" text-anchor="middle">MONITORING CHAT...</text>
-            <text x="200" y="180" font-family="monospace" font-size="9" fill="#22c55e" opacity="0.2" text-anchor="middle">CODE DETECTED: creator*****</text>
-          </svg>
-        </div>
-        <div class="proj-overlay"></div>
-        <div class="proj-body">
-          <div class="proj-tags">
-            <span class="proj-tag">Chrome Extension</span>
-            <span class="proj-tag">WebSocket</span>
-            <span class="proj-tag">Automation</span>
-          </div>
-          <div class="proj-name">Auto Code Claimer</div>
-          <p class="proj-desc">Chrome extension that monitors Kick.com, Discord and X/Twitter for promo codes and auto-redeems them in real time using WebSocket listeners.</p>
-          <a href="#" class="proj-link">Private Project →</a>
-        </div>
-      </div>
-
-      <!-- AutoJoin -->
-      <div class="project-card">
-        <div class="proj-img" style="background:linear-gradient(135deg,#0a0f0a,#0d1a0d)">
-          <svg width="100%" height="100%" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-            <rect x="50" y="60" width="300" height="90" rx="14" fill="none" stroke="#22c55e" stroke-width="1" opacity="0.25"/>
-            <circle cx="78" cy="105" r="14" fill="#22c55e" opacity="0.12"/>
-            <text x="78" y="110" font-family="monospace" font-size="14" fill="#22c55e" opacity="0.7" text-anchor="middle">K</text>
-            <rect x="105" y="90" width="180" height="9" rx="4" fill="#22c55e" opacity="0.25"/>
-            <rect x="105" y="107" width="120" height="7" rx="3" fill="#22c55e" opacity="0.15"/>
-            <rect x="300" y="93" width="38" height="20" rx="10" fill="#22c55e" opacity="0.7"/>
-            <circle cx="329" cy="103" r="8" fill="white" opacity="0.9"/>
-            <text x="200" y="175" font-family="monospace" font-size="9" fill="#22c55e" opacity="0.3" text-anchor="middle">AUTO-JOINING BATTLES...</text>
-            <text x="200" y="190" font-family="monospace" font-size="9" fill="#22c55e" opacity="0.2" text-anchor="middle">clash.gg · cases.gg · rustclash</text>
-          </svg>
-        </div>
-        <div class="proj-overlay"></div>
-        <div class="proj-body">
-          <div class="proj-tags">
-            <span class="proj-tag">Chrome Extension</span>
-            <span class="proj-tag">WebSocket</span>
-            <span class="proj-tag">Automation</span>
-          </div>
-          <div class="proj-name">AutoJoin ChatCodes</div>
-          <p class="proj-desc">Chrome extension that auto-joins case battles on Clash.gg, Cases.gg and RustClash by detecting codes from Kick.com streamers in real time.</p>
-          <a href="#" class="proj-link">Private Project →</a>
-        </div>
-      </div>
-
-      <!-- Promo Code Bot -->
-      <div class="project-card">
-        <div class="proj-img" style="background:linear-gradient(135deg,#0d0a1a,#130d1f)">
-          <svg width="100%" height="100%" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="200" cy="80" r="30" fill="none" stroke="#7c3aed" stroke-width="1.5" opacity="0.5"/>
-            <circle cx="200" cy="80" r="18" fill="#7c3aed" opacity="0.12"/>
-            <text x="200" y="86" font-family="monospace" font-size="20" fill="#7c3aed" opacity="0.7" text-anchor="middle">✦</text>
-            <rect x="80" y="125" width="100" height="8" rx="4" fill="#7c3aed" opacity="0.35"/>
-            <rect x="80" y="140" width="70" height="6" rx="3" fill="#7c3aed" opacity="0.2"/>
-            <text x="270" y="118" font-family="monospace" font-size="9" fill="#7c3aed" opacity="0.5" text-anchor="middle">TELEGRAM</text>
-            <line x1="270" y1="122" x2="270" y2="145" stroke="#7c3aed" stroke-width="1" opacity="0.3"/>
-            <text x="270" y="155" font-family="monospace" font-size="9" fill="#7c3aed" opacity="0.5" text-anchor="middle">DISCORD</text>
-            <text x="200" y="200" font-family="monospace" font-size="9" fill="#7c3aed" opacity="0.25" text-anchor="middle">TELEGRAM → DISCORD</text>
-          </svg>
-        </div>
-        <div class="proj-overlay"></div>
-        <div class="proj-body">
-          <div class="proj-tags">
-            <span class="proj-tag">Python</span>
-            <span class="proj-tag">Telethon</span>
-            <span class="proj-tag">Discord API</span>
-          </div>
-          <div class="proj-name">Promo Code Bot</div>
-          <p class="proj-desc">Python bot that monitors multiple Telegram channels for promo codes and automatically routes them to Discord webhooks in real time.</p>
-          <a href="#" class="proj-link">Private Project →</a>
-        </div>
-      </div>
-
+<!-- SERVICES -->
+<div class="band alt" id="services">
+  <section class="section-wrap">
+    <div class="section-head">
+      <div class="section-label" data-i18n="services.label">Lo que ofrezco</div>
+      <h2 class="section-title" data-i18n="services.title">SERVICIOS</h2>
     </div>
-<div style="background:var(--bg2)" id="services">
-  <div class="section-wrap">
-    <div class="section-label">What I offer</div>
-    <div class="section-title">SERVICES</div>
-    <div class="services-grid reveal">
-      <div class="service-card">
-        <div class="service-icon">🌐</div>
-        <div class="service-name">Web Development</div>
-        <p class="service-desc">Custom websites and web apps with clean design, fast performance and mobile-ready layouts. Built to impress.</p>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="m10 8 5 3-5 3z"/><path d="M8 21h8"/></svg></div>
+        <h3 class="service-name" data-i18n="s1.name">Páginas para streamers</h3>
+        <p class="service-desc" data-i18n="s1.desc">Leaderboards, códigos de afiliado, sponsors, redes y stream en una sola página con tu marca.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🤖</div>
-        <div class="service-name">Discord Bots</div>
-        <p class="service-desc">Custom bots for your server — moderation, giveaways, code routing, webhooks, automations. Anything you need.</p>
+      <div class="service-card reveal">
+        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h18l-1.5 11h-15z"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/></svg></div>
+        <h3 class="service-name" data-i18n="s2.name">Páginas para negocios</h3>
+        <p class="service-desc" data-i18n="s2.desc">Menú o catálogo online con carrito: tus clientes piden y el pedido te llega por WhatsApp.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">🧩</div>
-        <div class="service-name">Chrome Extensions</div>
-        <p class="service-desc">Browser automation tools, content scripts, background workers. Built for real use cases, not demos.</p>
+      <div class="service-card reveal">
+        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></div>
+        <h3 class="service-name" data-i18n="s3.name">Dashboards y paneles a medida</h3>
+        <p class="service-desc" data-i18n="s3.desc">Tus datos en un panel claro: finanzas, estadísticas, inventarios o lo que necesites seguir.</p>
       </div>
-      <div class="service-card">
-        <div class="service-icon">⚙️</div>
-        <div class="service-name">Scripts & Automation</div>
-        <p class="service-desc">Python or JS scripts to automate repetitive tasks — scrapers, bots, monitors, API integrations.</p>
+      <div class="service-card reveal">
+        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><path d="M12 8.5h8.5M9 13.7 4.8 6.3M15 13.7l-4.2 7.2"/></svg></div>
+        <h3 class="service-name" data-i18n="s4.name">Extensiones de Chrome</h3>
+        <p class="service-desc" data-i18n="s4.desc">Herramientas que viven en tu navegador y hacen el trabajo repetitivo por ti en las webs que ya usas.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div>
+        <h3 class="service-name" data-i18n="s5.name">Automatizaciones</h3>
+        <p class="service-desc" data-i18n="s5.desc">Scripts y bots que vigilan, recopilan o mueven datos por ti: scrapers, alertas, integraciones con APIs, Discord y Telegram.</p>
       </div>
     </div>
-  </div>
+    <div class="services-cta">
+      <span data-i18n="services.ctaText">¿Tienes una idea? Te digo cómo hacerla y cuánto tarda.</span>
+      <a href="#contact" class="btn-primary" data-i18n="nav.cta">Contactar</a>
+    </div>
+  </section>
 </div>
 
 <!-- CONTACT -->
-<div style="background:var(--bg)" id="contact">
-  <div class="section-wrap" style="text-align:center">
-    <div class="section-label" style="justify-content:center">Contact</div>
-    <div class="section-title">LET'S WORK</div>
+<div class="band" id="contact">
+  <section class="section-wrap">
     <div class="contact-box reveal">
-      <p>Got an idea for a website, bot, extension or script? Hit me up on Discord and let's build it.</p>
+      <div>
+        <div class="section-label" data-i18n="contact.label">Contacto</div>
+        <h2 class="section-title" data-i18n="contact.title">HABLEMOS</h2>
+        <p class="section-intro" data-i18n="contact.intro">Escríbeme por Discord y cuéntame qué necesitas. Respondo rápido.</p>
+      </div>
       <div class="contact-methods">
-        <a href="https://discord.com/users/1258079154063151254" target="_blank" class="contact-btn">
-          <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" style="width:22px;height:22px">
-          <span class="contact-btn-label">Message on Discord</span>
+        <a href="https://discord.com/users/1258079154063151254" target="_blank" rel="noopener" class="contact-btn">
+          <svg class="ic-discord" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.3 18.3 0 0 0-5.6 0L8.6 3a19.7 19.7 0 0 0-4.9 1.5C.6 9.1-.3 13.7.1 18.2a19.9 19.9 0 0 0 6 3l1.3-2.1c-.7-.3-1.4-.6-2-1l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4c-.6.4-1.3.7-2 1l1.3 2.1a19.8 19.8 0 0 0 6-3c.5-5.2-.9-9.8-3.6-13.8ZM8 15.4c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.6 8 10.6s2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z"/></svg>
+          <span class="contact-btn-text"><span class="contact-btn-label">Discord</span><span class="contact-btn-sub" data-i18n="contact.discord">Escríbeme por mensaje directo</span></span>
           <span class="contact-btn-arrow">→</span>
         </a>
-        <a href="https://github.com/Alyax0" target="_blank" class="contact-btn">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" style="width:22px;height:22px;filter:invert(1)">
-          <span class="contact-btn-label">Check GitHub</span>
+        <a href="#" target="_blank" rel="noopener" class="contact-btn" id="contact-whatsapp" hidden>
+          <svg class="ic-whatsapp" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.2c-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5.3-.5v-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 2.5 1 3 .8 3.6.8.6-.1 1.8-.8 2.1-1.5.3-.7.3-1.4.2-1.5-.1-.1-.3-.2-.6-.3ZM12 21.8a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8Zm8.4-18.2A11.8 11.8 0 0 0 1.7 17.9L0 24l6.3-1.7A11.8 11.8 0 0 0 24 12a11.7 11.7 0 0 0-3.6-8.4Z"/></svg>
+          <span class="contact-btn-text"><span class="contact-btn-label">WhatsApp</span><span class="contact-btn-sub" data-i18n="contact.whatsapp">Mándame un mensaje</span></span>
+          <span class="contact-btn-arrow">→</span>
+        </a>
+        <a href="#" class="contact-btn" id="contact-email" hidden>
+          <svg class="ic-mail" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+          <span class="contact-btn-text"><span class="contact-btn-label">Email</span><span class="contact-btn-sub" id="contact-email-sub"></span></span>
           <span class="contact-btn-arrow">→</span>
         </a>
       </div>
     </div>
-  </div>
+  </section>
 </div>
+
+</main>
 
 <footer>
   <div class="footer-logo">ALYAX</div>
-  <div class="footer-copy">© 2026 — Built with precision.</div>
+  <div class="footer-copy">© 2026 Alyax · <a href="https://github.com/Alyax0" target="_blank" rel="noopener">GitHub</a></div>
 </footer>
 
 <script>
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+// Datos de contacto: completa estos campos y los botones aparecen solos.
+const CONTACT = {
+  whatsapp: '', // solo dígitos con código de país, ej. '5212345678901'
+  email: ''
+};
 
-const dot = document.getElementById('dot');
-const ring = document.getElementById('ring');
-let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-function animCursor() {
-  rx += (mx - rx) * 0.12;
-  ry += (my - ry) * 0.12;
-  dot.style.left = (mx - 3) + 'px';
-  dot.style.top = (my - 3) + 'px';
-  ring.style.left = (rx - 16) + 'px';
-  ring.style.top = (ry - 16) + 'px';
-  requestAnimationFrame(animCursor);
+const I18N = {
+  es: {
+    'meta.title': 'Alyax — Developer',
+    'nav.lang': 'Idioma', 'nav.projects': 'Proyectos', 'nav.tools': 'Herramientas', 'nav.services': 'Servicios', 'nav.cta': 'Contactar',
+    'hero.tag': 'Disponible para proyectos', 'hero.l1': 'CREO', 'hero.l2': 'PÁGINAS', 'hero.l3': 'Y HERRAMIENTAS',
+    'hero.sub': 'Desarrollador web y de automatizaciones. Hago páginas para streamers y negocios, dashboards a medida, extensiones de Chrome y scripts que te ahorran tiempo.',
+    'hero.cta': 'Hablemos de tu proyecto', 'hero.secondary': 'Ver proyectos',
+    'hero.stat1': 'Proyectos en vivo', 'hero.stat2': 'Herramientas propias', 'hero.stat3': 'Atención en español e inglés',
+    'projects.label': 'Trabajo', 'projects.title': 'PROYECTOS DESTACADOS', 'projects.intro': 'Todos están publicados: entra y pruébalos.',
+    'cta.visit': 'Ver en vivo', 'cta.demo': 'Ver demo',
+    'tag.i18n': 'ES / EN', 'tag.livePrices': 'Precios en vivo', 'tag.sportsApi': 'API deportiva',
+    'p1.kicker': 'Esports · CS2, Valorant, Overwatch',
+    'p1.desc': 'Partidos en vivo, resultados, calendario, equipos y noticias de CS2, Valorant y Overwatch, con predicciones basadas en la forma reciente de cada equipo.',
+    'p2.kicker': 'Dashboard a medida',
+    'p2.desc': 'Tracker de finanzas multiplataforma: depósitos, retiros, balance, cartera cripto con precios en vivo e inventario de skins de CS2. La demo usa datos de ejemplo.',
+    'p3.kicker': 'Página para streamer',
+    'p3.desc': 'Página de comunidad para un streamer: leaderboard con premios, códigos de afiliado para copiar, sponsors, videos y stream.',
+    'p4.kicker': 'Restaurante · Pedidos',
+    'p4.desc': 'Menú online con carrito para un restaurante: el cliente arma su pedido y lo envía por WhatsApp con un toque, listo para preparar.',
+    'p5.kicker': 'Analytics deportivo',
+    'p5.desc': 'Fútbol, NBA y MLB en tiempo real: partidos, resultados, tablas de posiciones y líderes estadísticos de las principales ligas.',
+    'tools.label': 'Uso propio', 'tools.title': 'HERRAMIENTAS Y AUTOMATIZACIÓN',
+    'tools.intro': 'Extensiones y scripts que construí para resolver problemas reales. Puedo hacer algo así para ti.',
+    'tools.ext': 'Extensión de Chrome', 'tools.panel': 'Panel + script', 'tools.script': 'Script',
+    'tools.t1': 'Temporizadores dentro de Kick para seguir eventos y avisos del stream sin salir de la pestaña.',
+    'tools.t2': 'Encuentra streamers de Kick y los códigos que comparten en el chat, filtra a los que no tienen web propia y exporta la lista a CSV.',
+    'tools.n3': 'Comparador de precios de skins',
+    'tools.t3': 'Compara el precio de una skin de CS2 en varios marketplaces para encontrar dónde conviene comprar o vender.',
+    'tools.note': 'Código privado. Si te interesa algo parecido, escríbeme.',
+    'services.label': 'Lo que ofrezco', 'services.title': 'SERVICIOS',
+    's1.name': 'Páginas para streamers', 's1.desc': 'Leaderboards, códigos de afiliado, sponsors, redes y stream en una sola página con tu marca.',
+    's2.name': 'Páginas para negocios', 's2.desc': 'Menú o catálogo online con carrito: tus clientes piden y el pedido te llega por WhatsApp.',
+    's3.name': 'Dashboards y paneles a medida', 's3.desc': 'Tus datos en un panel claro: finanzas, estadísticas, inventarios o lo que necesites seguir.',
+    's4.name': 'Extensiones de Chrome', 's4.desc': 'Herramientas que viven en tu navegador y hacen el trabajo repetitivo por ti en las webs que ya usas.',
+    's5.name': 'Automatizaciones', 's5.desc': 'Scripts y bots que vigilan, recopilan o mueven datos por ti: scrapers, alertas, integraciones con APIs, Discord y Telegram.',
+    'services.ctaText': '¿Tienes una idea? Te digo cómo hacerla y cuánto tarda.',
+    'contact.label': 'Contacto', 'contact.title': 'HABLEMOS',
+    'contact.intro': 'Escríbeme por Discord y cuéntame qué necesitas. Respondo rápido.',
+    'contact.discord': 'Escríbeme por mensaje directo', 'contact.whatsapp': 'Mándame un mensaje',
+    'contact.waText': 'Hola Alyax, vi tu portfolio y quiero cotizar un proyecto.'
+  },
+  en: {
+    'meta.title': 'Alyax — Developer',
+    'nav.lang': 'Language', 'nav.projects': 'Projects', 'nav.tools': 'Tools', 'nav.services': 'Services', 'nav.cta': 'Contact',
+    'hero.tag': 'Available for projects', 'hero.l1': 'I BUILD', 'hero.l2': 'WEBSITES', 'hero.l3': 'AND TOOLS',
+    'hero.sub': 'Web and automation developer. I build sites for streamers and businesses, custom dashboards, Chrome extensions and scripts that save you time.',
+    'hero.cta': "Let's talk about your project", 'hero.secondary': 'See projects',
+    'hero.stat1': 'Live projects', 'hero.stat2': 'In-house tools', 'hero.stat3': 'Spanish & English',
+    'projects.label': 'Work', 'projects.title': 'FEATURED PROJECTS', 'projects.intro': 'All of them are live: go ahead and try them.',
+    'cta.visit': 'View live', 'cta.demo': 'View demo',
+    'tag.i18n': 'ES / EN', 'tag.livePrices': 'Live prices', 'tag.sportsApi': 'Sports API',
+    'p1.kicker': 'Esports · CS2, Valorant, Overwatch',
+    'p1.desc': 'Live matches, results, calendar, teams and news for CS2, Valorant and Overwatch, with predictions based on each team’s recent form.',
+    'p2.kicker': 'Custom dashboard',
+    'p2.desc': 'Multi-platform finance tracker: deposits, withdrawals, balance, a crypto portfolio with live prices and a CS2 skin inventory. The demo uses sample data.',
+    'p3.kicker': 'Streamer website',
+    'p3.desc': 'Community site for a streamer: a leaderboard with prizes, copyable affiliate codes, sponsors, videos and the stream.',
+    'p4.kicker': 'Restaurant · Orders',
+    'p4.desc': 'Online menu with a cart for a restaurant: customers build their order and send it over WhatsApp in one tap, ready to cook.',
+    'p5.kicker': 'Sports analytics',
+    'p5.desc': 'Football, NBA and MLB in real time: matches, results, standings and stat leaders for the major leagues.',
+    'tools.label': 'Built for myself', 'tools.title': 'TOOLS & AUTOMATION',
+    'tools.intro': 'Extensions and scripts I built to solve real problems. I can build something like this for you.',
+    'tools.ext': 'Chrome extension', 'tools.panel': 'Panel + script', 'tools.script': 'Script',
+    'tools.t1': 'Timers inside Kick to keep track of stream events and alerts without leaving the tab.',
+    'tools.t2': 'Finds Kick streamers and the codes they share in chat, filters the ones without their own website and exports the list to CSV.',
+    'tools.n3': 'Skin price comparator',
+    'tools.t3': 'Compares a CS2 skin’s price across several marketplaces to find the best place to buy or sell.',
+    'tools.note': 'Private code. If you want something similar, get in touch.',
+    'services.label': 'What I offer', 'services.title': 'SERVICES',
+    's1.name': 'Websites for streamers', 's1.desc': 'Leaderboards, affiliate codes, sponsors, socials and your stream on a single branded page.',
+    's2.name': 'Websites for businesses', 's2.desc': 'Online menu or catalog with a cart: customers order and you get the order on WhatsApp.',
+    's3.name': 'Custom dashboards & panels', 's3.desc': 'Your data in a clear panel: finances, stats, inventory or whatever you need to track.',
+    's4.name': 'Chrome extensions', 's4.desc': 'Tools that live in your browser and do the repetitive work for you on the sites you already use.',
+    's5.name': 'Automation', 's5.desc': 'Scripts and bots that watch, collect or move data for you: scrapers, alerts, API integrations, Discord and Telegram.',
+    'services.ctaText': 'Got an idea? I’ll tell you how to build it and how long it takes.',
+    'contact.label': 'Contact', 'contact.title': "LET'S TALK",
+    'contact.intro': 'Message me on Discord and tell me what you need. I reply fast.',
+    'contact.discord': 'Send me a direct message', 'contact.whatsapp': 'Send me a message',
+    'contact.waText': 'Hi Alyax, I saw your portfolio and I’d like a quote for a project.'
+  }
+};
+
+let lang = 'es';
+
+function setupContact() {
+  const wa = document.getElementById('contact-whatsapp');
+  if (CONTACT.whatsapp) {
+    wa.href = 'https://wa.me/' + CONTACT.whatsapp + '?text=' + encodeURIComponent(I18N[lang]['contact.waText']);
+    wa.hidden = false;
+  }
+  const mail = document.getElementById('contact-email');
+  if (CONTACT.email) {
+    mail.href = 'mailto:' + CONTACT.email;
+    document.getElementById('contact-email-sub').textContent = CONTACT.email;
+    mail.hidden = false;
+  }
 }
-animCursor();
 
-document.querySelectorAll('a, .stack-item, .project-card, .service-card').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    ring.style.width = '48px';
-    ring.style.height = '48px';
-    ring.style.borderColor = 'rgba(6,182,212,0.7)';
+function applyLang(next) {
+  lang = I18N[next] ? next : 'es';
+  const dict = I18N[lang];
+  document.documentElement.lang = lang;
+  document.title = dict['meta.title'];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const val = dict[el.dataset.i18n];
+    if (val != null) el.textContent = val;
   });
-  el.addEventListener('mouseleave', () => {
-    ring.style.width = '32px';
-    ring.style.height = '32px';
-    ring.style.borderColor = 'rgba(6,182,212,0.4)';
+  document.querySelectorAll('[data-i18n-attr]').forEach(el => {
+    const [attr, key] = el.dataset.i18nAttr.split(':');
+    el.setAttribute(attr, dict[key]);
   });
+  document.querySelectorAll('.lang-opt').forEach(btn => {
+    btn.setAttribute('aria-pressed', String(btn.dataset.lang === lang));
+  });
+  setupContact();
+  try { localStorage.setItem('lang', lang); } catch (e) {}
+}
+
+document.querySelectorAll('.lang-opt').forEach(btn => {
+  btn.addEventListener('click', () => applyLang(btn.dataset.lang));
 });
+
+let saved = null;
+try { saved = localStorage.getItem('lang'); } catch (e) {}
+applyLang(saved || ((navigator.language || 'es').toLowerCase().startsWith('es') ? 'es' : 'en'));
+
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+} else {
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+}
 </script>
 </body>
 </html>
