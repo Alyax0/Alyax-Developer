@@ -190,6 +190,8 @@ button { font: inherit; color: inherit; }
 .card.feature { grid-column: 1 / -1; flex-direction: row; }
 .card.feature .shot { flex: 1.35; border-bottom: none; border-right: 1px solid var(--line); }
 .card.feature .body { flex: 1; padding: 32px; justify-content: center; }
+.card.feature.flip { flex-direction: row-reverse; }
+.card.feature.flip .shot { border-right: none; border-left: 1px solid var(--line); }
 .shot { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: var(--card-2); border-bottom: 1px solid var(--line); }
 .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.5s ease; }
 .card:hover .shot img { transform: scale(1.025); }
@@ -269,8 +271,8 @@ footer { margin-top: 48px; border-top: 1px solid var(--line); }
 @media (max-width: 900px) {
   .links { display: none; }
   .hero { grid-template-columns: 1fr; gap: 40px; }
-  .card.feature { flex-direction: column; }
-  .card.feature .shot { border-right: none; border-bottom: 1px solid var(--line); }
+  .card.feature, .card.feature.flip { flex-direction: column; }
+  .card.feature .shot, .card.feature.flip .shot { border-right: none; border-left: none; border-bottom: 1px solid var(--line); }
   .card.feature .body { padding: 22px; }
   .feature .name { font-size: 24px; }
   .tools { grid-template-columns: 1fr; }
@@ -323,12 +325,13 @@ footer { margin-top: 48px; border-top: 1px solid var(--line); }
     </div>
   </div>
   <div class="index" aria-label="Proyectos en vivo" data-i18n-attr="aria-label:index.aria">
-    <div class="index-head kicker"><span data-i18n="index.title">proyectos en vivo</span><span>05</span></div>
+    <div class="index-head kicker"><span data-i18n="index.title">proyectos en vivo</span><span>06</span></div>
     <a href="https://pickrate-gg.vercel.app/" target="_blank" rel="noopener"><span class="kicker">01</span>Pickrate<span class="arr">↗</span></a>
     <a href="https://dashboard-alyax-demo.vercel.app/" target="_blank" rel="noopener"><span class="kicker">02</span>Dashboard Alyax<span class="arr">↗</span></a>
     <a href="https://alyaxgambling.vercel.app/" target="_blank" rel="noopener"><span class="kicker">03</span>Alyax Gambling<span class="arr">↗</span></a>
     <a href="https://dulces-magnolias.vercel.app/" target="_blank" rel="noopener"><span class="kicker">04</span>Dulces Magnolias<span class="arr">↗</span></a>
     <a href="https://matchly-gg.vercel.app/" target="_blank" rel="noopener"><span class="kicker">05</span>Matchly<span class="arr">↗</span></a>
+    <a href="https://kick-scout.vercel.app/" target="_blank" rel="noopener"><span class="kicker">06</span>Kick Scout<span class="arr">↗</span></a>
   </div>
 </section>
 
@@ -395,6 +398,17 @@ footer { margin-top: 48px; border-top: 1px solid var(--line); }
       </div>
     </article>
 
+    <article class="card feature flip reveal">
+      <a class="shot" href="https://kick-scout.vercel.app/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="img/kickscout.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
+      <div class="body">
+        <div class="kicker" data-i18n="p6.kind">panel · streamers de kick</div>
+        <h3 class="name">Kick Scout</h3>
+        <p class="desc" data-i18n="p6.desc">Directorio de streamers de Kick que promocionan sitios de gambling, con su código de afiliado y sus redes. Se actualiza cada hora, guarda estado de contacto y notas, exporta a CSV y avisa con sonido cuando un streamer prende.</p>
+        <div class="stack"><span>JavaScript</span><span>Supabase</span><span>Kick</span><span>Vercel</span></div>
+        <a class="go" href="https://kick-scout.vercel.app/" target="_blank" rel="noopener"><span data-i18n="cta.live">Ver en vivo</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+    </article>
+
   </div>
 </section>
 
@@ -411,9 +425,9 @@ footer { margin-top: 48px; border-top: 1px solid var(--line); }
       <p data-i18n="tools.t1">Temporizadores dentro de Kick para seguir eventos y avisos del stream sin salir de la pestaña.</p>
     </div>
     <div class="tool reveal">
-      <span class="badge" data-i18n="tools.panel">panel + script</span>
-      <h3>Kick Scout</h3>
-      <p data-i18n="tools.t2">Encuentra streamers de Kick y los códigos que comparten en el chat, filtra a los que no tienen web propia y exporta la lista a CSV.</p>
+      <span class="badge" data-i18n="tools.ext">extensión de chrome</span>
+      <h3>Alyax Hub</h3>
+      <p data-i18n="tools.t2">Reúne en una sola extensión el canje de códigos y el auto-join de case battles en varios sitios, con un núcleo compartido y un módulo por sitio.</p>
     </div>
     <div class="tool reveal">
       <span class="badge" data-i18n="tools.script">script</span>
@@ -497,9 +511,11 @@ const I18N = {
     'p5.desc': 'Fútbol, NBA, MLB y tenis en tiempo real: partidos, resultados, tablas de posiciones y goleadores de las principales ligas.',
     'tools.title': 'Herramientas y automatización',
     'tools.intro': 'Cosas que hice para mí. Si necesitas algo parecido, lo puedo hacer para ti.',
-    'tools.ext': 'extensión de chrome', 'tools.panel': 'panel + script', 'tools.script': 'script',
+    'tools.ext': 'extensión de chrome', 'tools.script': 'script',
     'tools.t1': 'Temporizadores dentro de Kick para seguir eventos y avisos del stream sin salir de la pestaña.',
-    'tools.t2': 'Encuentra streamers de Kick y los códigos que comparten en el chat, filtra a los que no tienen web propia y exporta la lista a CSV.',
+    'tools.t2': 'Reúne en una sola extensión el canje de códigos y el auto-join de case battles en varios sitios, con un núcleo compartido y un módulo por sitio.',
+    'p6.kind': 'panel · streamers de kick',
+    'p6.desc': 'Directorio de streamers de Kick que promocionan sitios de gambling, con su código de afiliado y sus redes. Se actualiza cada hora, guarda estado de contacto y notas, exporta a CSV y avisa con sonido cuando un streamer prende.',
     'tools.n3': 'Comparador de precios de skins',
     'tools.t3': 'Compara el precio de una skin de CS2 en varios marketplaces para encontrar dónde conviene comprar o vender.',
     'tools.note': '// código privado',
@@ -536,9 +552,11 @@ const I18N = {
     'p5.desc': 'Football, NBA, MLB and tennis in real time: matches, results, standings and top scorers for the major leagues.',
     'tools.title': 'Tools & automation',
     'tools.intro': 'Things I built for myself. If you need something similar, I can build it for you.',
-    'tools.ext': 'chrome extension', 'tools.panel': 'panel + script', 'tools.script': 'script',
+    'tools.ext': 'chrome extension', 'tools.script': 'script',
     'tools.t1': 'Timers inside Kick to keep track of stream events and alerts without leaving the tab.',
-    'tools.t2': 'Finds Kick streamers and the codes they share in chat, filters the ones without their own website and exports the list to CSV.',
+    'tools.t2': 'A single extension that handles code redemption and case-battle auto-join across several sites, with a shared core and one module per site.',
+    'p6.kind': 'panel · kick streamers',
+    'p6.desc': 'Directory of Kick streamers who promote gambling sites, with their affiliate code and socials. It updates every hour, tracks contact status and notes, exports to CSV and plays a sound when a streamer goes live.',
     'tools.n3': 'Skin price comparator',
     'tools.t3': 'Compares a CS2 skin’s price across several marketplaces to find the best place to buy or sell.',
     'tools.note': '// private code',
