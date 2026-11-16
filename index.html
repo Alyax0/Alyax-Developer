@@ -190,8 +190,6 @@ button { font: inherit; color: inherit; }
 .card.feature { grid-column: 1 / -1; flex-direction: row; }
 .card.feature .shot { flex: 1.35; border-bottom: none; border-right: 1px solid var(--line); }
 .card.feature .body { flex: 1; padding: 32px; justify-content: center; }
-.card.feature.flip { flex-direction: row-reverse; }
-.card.feature.flip .shot { border-right: none; border-left: 1px solid var(--line); }
 .shot { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: var(--card-2); border-bottom: 1px solid var(--line); }
 .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.5s ease; }
 .card:hover .shot img { transform: scale(1.025); }
@@ -271,8 +269,8 @@ footer { margin-top: 48px; border-top: 1px solid var(--line); }
 @media (max-width: 900px) {
   .links { display: none; }
   .hero { grid-template-columns: 1fr; gap: 40px; }
-  .card.feature, .card.feature.flip { flex-direction: column; }
-  .card.feature .shot, .card.feature.flip .shot { border-right: none; border-left: none; border-bottom: 1px solid var(--line); }
+  .card.feature { flex-direction: column; }
+  .card.feature .shot { border-right: none; border-bottom: 1px solid var(--line); }
   .card.feature .body { padding: 22px; }
   .feature .name { font-size: 24px; }
   .tools { grid-template-columns: 1fr; }
@@ -327,11 +325,11 @@ footer { margin-top: 48px; border-top: 1px solid var(--line); }
   <div class="index" aria-label="Proyectos en vivo" data-i18n-attr="aria-label:index.aria">
     <div class="index-head kicker"><span data-i18n="index.title">proyectos en vivo</span><span>06</span></div>
     <a href="https://pickrate-gg.vercel.app/" target="_blank" rel="noopener"><span class="kicker">01</span>Pickrate<span class="arr">↗</span></a>
-    <a href="https://dashboard-alyax-demo.vercel.app/" target="_blank" rel="noopener"><span class="kicker">02</span>Dashboard Alyax<span class="arr">↗</span></a>
+    <a href="https://matchly-gg.vercel.app/" target="_blank" rel="noopener"><span class="kicker">02</span>Matchly<span class="arr">↗</span></a>
     <a href="https://alyaxgambling.vercel.app/" target="_blank" rel="noopener"><span class="kicker">03</span>Alyax Gambling<span class="arr">↗</span></a>
-    <a href="https://dulces-magnolias.vercel.app/" target="_blank" rel="noopener"><span class="kicker">04</span>Dulces Magnolias<span class="arr">↗</span></a>
-    <a href="https://matchly-gg.vercel.app/" target="_blank" rel="noopener"><span class="kicker">05</span>Matchly<span class="arr">↗</span></a>
-    <a href="https://kick-scout.vercel.app/" target="_blank" rel="noopener"><span class="kicker">06</span>Kick Scout<span class="arr">↗</span></a>
+    <a href="https://kick-scout.vercel.app/" target="_blank" rel="noopener"><span class="kicker">04</span>Kick Scout<span class="arr">↗</span></a>
+    <a href="https://dashboard-alyax-demo.vercel.app/" target="_blank" rel="noopener"><span class="kicker">05</span>Dashboard Alyax<span class="arr">↗</span></a>
+    <a href="https://dulces-magnolias.vercel.app/" target="_blank" rel="noopener"><span class="kicker">06</span>Dulces Magnolias<span class="arr">↗</span></a>
   </div>
 </section>
 
@@ -354,14 +352,14 @@ footer { margin-top: 48px; border-top: 1px solid var(--line); }
       </div>
     </article>
 
-    <article class="card reveal">
-      <a class="shot" href="https://dashboard-alyax-demo.vercel.app/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="img/dashboard.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
+    <article class="card feature reveal">
+      <a class="shot" href="https://matchly-gg.vercel.app/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="img/matchly.webp" alt="" width="800" height="500" decoding="async"></a>
       <div class="body">
-        <div class="kicker" data-i18n="p2.kind">dashboard a medida</div>
-        <h3 class="name">Dashboard Alyax</h3>
-        <p class="desc" data-i18n="p2.desc">Tracker de inversiones: patrimonio total, cripto, acciones, ETFs y skins de CS2 con precios actualizados. La demo usa datos de ejemplo.</p>
-        <div class="stack"><span>JavaScript</span><span data-i18n="tag.live">Precios en vivo</span><span>Vercel</span></div>
-        <a class="go" href="https://dashboard-alyax-demo.vercel.app/" target="_blank" rel="noopener"><span data-i18n="cta.demo">Ver demo</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        <div class="kicker" data-i18n="p5.kind">analytics deportivo</div>
+        <h3 class="name">Matchly</h3>
+        <p class="desc" data-i18n="p5.desc">Fútbol, NBA, MLB y tenis en tiempo real: partidos, resultados, tablas de posiciones y goleadores de las principales ligas.</p>
+        <div class="stack"><span>JavaScript</span><span data-i18n="tag.sports">API deportiva</span><span>Vercel</span></div>
+        <a class="go" href="https://matchly-gg.vercel.app/" target="_blank" rel="noopener"><span data-i18n="cta.live">Ver en vivo</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
       </div>
     </article>
 
@@ -377,28 +375,6 @@ footer { margin-top: 48px; border-top: 1px solid var(--line); }
     </article>
 
     <article class="card reveal">
-      <a class="shot" href="https://dulces-magnolias.vercel.app/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="img/magnolias.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
-      <div class="body">
-        <div class="kicker" data-i18n="p4.kind">restaurante · pedidos</div>
-        <h3 class="name">Dulces Magnolias</h3>
-        <p class="desc" data-i18n="p4.desc">Menú online con carrito para un restaurante: el cliente arma su pedido y lo envía por WhatsApp con un toque, listo para preparar.</p>
-        <div class="stack"><span>HTML/CSS</span><span>JavaScript</span><span>WhatsApp</span></div>
-        <a class="go" href="https://dulces-magnolias.vercel.app/" target="_blank" rel="noopener"><span data-i18n="cta.live">Ver en vivo</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-      </div>
-    </article>
-
-    <article class="card reveal">
-      <a class="shot" href="https://matchly-gg.vercel.app/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="img/matchly.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
-      <div class="body">
-        <div class="kicker" data-i18n="p5.kind">analytics deportivo</div>
-        <h3 class="name">Matchly</h3>
-        <p class="desc" data-i18n="p5.desc">Fútbol, NBA, MLB y tenis en tiempo real: partidos, resultados, tablas de posiciones y goleadores de las principales ligas.</p>
-        <div class="stack"><span>JavaScript</span><span data-i18n="tag.sports">API deportiva</span><span>Vercel</span></div>
-        <a class="go" href="https://matchly-gg.vercel.app/" target="_blank" rel="noopener"><span data-i18n="cta.live">Ver en vivo</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-      </div>
-    </article>
-
-    <article class="card feature flip reveal">
       <a class="shot" href="https://kick-scout.vercel.app/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="img/kickscout.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
       <div class="body">
         <div class="kicker" data-i18n="p6.kind">panel · streamers de kick</div>
@@ -406,6 +382,28 @@ footer { margin-top: 48px; border-top: 1px solid var(--line); }
         <p class="desc" data-i18n="p6.desc">Directorio de streamers de Kick que promocionan sitios de gambling, con su código de afiliado y sus redes. Se actualiza cada hora, guarda estado de contacto y notas, exporta a CSV y avisa con sonido cuando un streamer prende.</p>
         <div class="stack"><span>JavaScript</span><span>Supabase</span><span>Kick</span><span>Vercel</span></div>
         <a class="go" href="https://kick-scout.vercel.app/" target="_blank" rel="noopener"><span data-i18n="cta.live">Ver en vivo</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="card reveal">
+      <a class="shot" href="https://dashboard-alyax-demo.vercel.app/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="img/dashboard.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
+      <div class="body">
+        <div class="kicker" data-i18n="p2.kind">dashboard a medida</div>
+        <h3 class="name">Dashboard Alyax</h3>
+        <p class="desc" data-i18n="p2.desc">Tracker de inversiones: patrimonio total, cripto, acciones, ETFs y skins de CS2 con precios actualizados. La demo usa datos de ejemplo.</p>
+        <div class="stack"><span>JavaScript</span><span data-i18n="tag.live">Precios en vivo</span><span>Vercel</span></div>
+        <a class="go" href="https://dashboard-alyax-demo.vercel.app/" target="_blank" rel="noopener"><span data-i18n="cta.demo">Ver demo</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+    </article>
+
+    <article class="card reveal">
+      <a class="shot" href="https://dulces-magnolias.vercel.app/" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="img/magnolias.webp" alt="" width="800" height="500" loading="lazy" decoding="async"></a>
+      <div class="body">
+        <div class="kicker" data-i18n="p4.kind">restaurante · pedidos</div>
+        <h3 class="name">Dulces Magnolias</h3>
+        <p class="desc" data-i18n="p4.desc">Menú online con carrito para un restaurante: el cliente arma su pedido y lo envía por WhatsApp con un toque, listo para preparar.</p>
+        <div class="stack"><span>HTML/CSS</span><span>JavaScript</span><span>WhatsApp</span></div>
+        <a class="go" href="https://dulces-magnolias.vercel.app/" target="_blank" rel="noopener"><span data-i18n="cta.live">Ver en vivo</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
       </div>
     </article>
 
